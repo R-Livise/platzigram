@@ -7,7 +7,7 @@
   <small >{{error}}</small>
   </div>
   {% endif %}
-  <form action="{% url "login" %}" class="form text-center" method="POST" >
+  <form action="{% url "users:login" %}" class="form text-center" method="POST" >
       {% csrf_token %}
       <div class="form-group ">
         <input type="text" class="form-control" placeholder="Username" name="username">
@@ -19,4 +19,5 @@
       <button class="btn btn-primary btn-block mt-4" type="submit">Sign in!!</button>
       <br/>
   </form>
+  <p class="mt-4">Don't have an account yet? <a href="{% url "users:signup" %}">Sign up here.</a></p>
 {% endblock %}

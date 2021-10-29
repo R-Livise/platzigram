@@ -6,12 +6,12 @@
   <div class="row justify-content-md-center">
     <div class="col-6 p-4" id="profile-box">
       <form
-        action="{% url 'update_profile' %}"
+        action="{% url 'users:update_profile' %}"
         method="POST"
         enctype="multipart/form-data"
       >
         {% csrf_token %} {% if form.errors %}
-        <p>{{ form.errors }}</p>
+        <p class="alert alert-danger">{{ form.errors }}</p>
         {% endif %}
 
         <div class="media">
@@ -34,7 +34,7 @@
               @{{ user.username }} | {{ user.get_full_name }}
             </h5>
             <p class="ml-4">
-              <input type="file" name="picture" required="true" />
+              <input type="file" name="picture" />
             </p>
           </div>
         </div>
@@ -45,12 +45,15 @@
         <div class="form-group">
           <label>Website</label>
           <input
-            class="form-control"
+            class="form-control {% if form.website.errors %} is-invalid {% endif %}"
             type="url"
             name="website"
             placeholder="Website"
-            value="{{ profile.website }}"
+            value="{% if form.website.errors %} {{form.website.value}} {% else %} {{ profile.website }} {% endif %}"
           />
+          <small class="invalid-feedback">
+            {% if form.website.errors %} {{form.website.errors}}  {% endif %}
+          </small>
         </div>
 
         <div class="form-group">

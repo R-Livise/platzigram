@@ -1,12 +1,13 @@
 {% extends "users/base.html" %} {% block head_content %}
 <title>Platzigram singup</title>
-{% endblock %} {% block container %} {% if error %}
-<div class="alert alert-danger">
-  <small>{{error}}</small>
+{% endblock %} {% block container %}
+{% if form.errors %}
+<div class="alert alert-danger ">
+<small >{{form.errors}}</small>
 </div>
 {% endif %}
 
-<form action="{% url 'signup' %}" method="post" class="form text-center">
+<form action="{% url 'users:signup' %}" method="post" class="form text-center">
   {% csrf_token %}
 
   <div class="form-group">
