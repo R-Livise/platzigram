@@ -1,10 +1,11 @@
 {% extends "users/base.html" %} {% block head_content %}
 <title>Login</title>
-{% endblock %} {% block container %}
+{% endblock %} 
+{% block container %}
 
-  {% if error %}
+  {% if form.errors %}
   <div class="alert alert-danger ">
-  <small >{{error}}</small>
+  <small >{{form.errors}}</small>
   </div>
   {% endif %}
   <form action="{% url "users:login" %}" class="form text-center" method="POST" >

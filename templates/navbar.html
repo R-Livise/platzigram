@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a href="">
+          <a href="{% url "users:detail" request.user.username%}">
             <img
               src="
               {% if request.user.profile.picture %}
