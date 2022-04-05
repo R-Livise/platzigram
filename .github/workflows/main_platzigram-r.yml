@@ -32,9 +32,6 @@ jobs:
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
-      - name: Start DataBase
-        run: python3 manage.py migrate
-      
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
@@ -57,6 +54,9 @@ jobs:
           name: python-app
           path: .
           
+      - name: Start DataBase
+        run: python3 manage.py migrate
+        
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
